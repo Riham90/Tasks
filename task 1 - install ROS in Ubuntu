@@ -1,0 +1,70 @@
+1. first you have to install VirtualBox
+
+2. to install Ubuntu:
+- go to https://ubuntu.com/desktop#download and chose Ubuntu Desktop 20.04LTS
+
+3. on VirtualBox :
+- Click on the new button, you have to provide the name of your new machine (Ubuntu 20.04), then click on next and choose the amount of memory RAM you like, then click on next and just everything as default and then click on create then leave hard disk file type as (VID) and click on next< just leave storage on a physical hard disk as dynamically allocated and then next, then choose your file location and size you like then click on create.
+- we will back to the VirtualBox window, just select the Ubuntu 22.04 machine, don't press on start button yet, you just have to click on the setting button, on the general setting click on advanced, and change Shared Clipboard to Bidirectional, and Drag'n'Drop to Bidirectional.
+- then on the System setting click on Processor and change the amount of CPU size as you like.
+- go to Storge setting and click on Empty under the controller, and chose the CD icon option then click on Choose a disk file..., and then you just need to browse to the location where you have downloaded your Ubuntu ios file, if you are done you can leave everything as default and click on ok.
+- select the Ubuntu 20.04 machine and click on Start.
+- choose the language you like then click on Install Ubuntu.
+- choose the Keyboard layout you are using on your laptop and then click on the continue button.
+- on Updates and other software, normally just leave it as normal installation, and also leave the Download updates while installing Ubuntu option checked, and check the option Install third-party software for graphics and Wi-Fi hardware and additional media formats, then click on continue.  
+- on Installation type just leave it as default(Erase disk and install Ubuntu) and then click on install now.
+- on write the changes to disks? just click on the continue button.
+- choose your location, and click on the continue button.
+- on Who are you?, just give a name to your Ubuntu operating system, and provide the password, then click on the continue button.
+- now the installation of Ubuntu will start on your VirtualBox, just wait until it is finished.
+- Click on the restart now button.
+- press Enter.
+- sign in in the login window.
+- on the welcome window click on Skip, Next, Next, Next, Done.
+- now you can install VirtualBox guest additions, go to the terminal (you can search for it, then click on it), and write 
+    - sudo apt-get update 
+    - sudo apt-get upgrade 
+    - sudo apt install build-essential dkms linux-headers-$(uname -r)
+- write y, after some time you will see that all the installation steps are finished, so once it's done you can close your terminal.
+- now go to Devices on your VirtualBox windows, and click on Insert Guest Additions CD image... , then click on run , enter your password then click on Authenticate, wait until it is finished then press enter.
+- now you have to restart your Ubuntu.
+
+
+Ubuntu install of ROS Noetic :
+- go to http://wiki.ros.org/Installation/Ubuntu
+1.Setup your sources.list :
+  sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+2. Set up your keys:
+  sudo apt install curl # if you haven't already installed curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
+3.Installation: 
+  - First, make sure your Debian package index is up-to-date:
+    sudo apt update
+  
+  - Now pick how much of ROS you would like to install.
+    Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages
+  - Desktop Install: Everything in ROS-Base plus tools like rqt and rviz :
+    sudo apt install ros-noetic-desktop-full
+    
+  - There are even more packages available in ROS. You can always install a specific package directly.
+    sudo apt install ros-noetic-PACKAGE
+    
+ 4. Environment setup:
+    source /opt/ros/noetic/setup.bash
+    - It can be convenient to automatically source this script every time a new shell is launched. These commands will do that for you.
+    - Bash :
+      echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+5. Dependencies for building packages :
+   sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+   
+   - Initialize rosdep:
+     Before you can use many ROS tools, you will need to initialize rosdep. rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. If you have not yet installed rosdep, do so as follows:
+     sudo apt install python3-rosdep
+     
+   - With the following, you can initialize rosdep.
+     sudo rosdep init
+     rosdep update
